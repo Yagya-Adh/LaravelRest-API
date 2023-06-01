@@ -1,0 +1,33 @@
+REST API LARAVEL
+
+1. model and migration file
+   $ sail artisan make:model Products --migration
+   $ sail artisan migrate
+
+2. phpmyadmin:
+   image: phpmyadmin/phpmyadmin
+   ports: - "8080:80"
+   environment:
+   PMA_HOST: "mysql"
+   PMA_USER: "${DB_USERNAME}"
+            PMA_PASSWORD: "${DB_PASSWORD}"
+   MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
+            PMA_DATABASE: "${DB_DATABASE}"
+   networks: - sail
+   depends_on: - mysql
+
+3. Controller :
+
+   a. make controller api resources:
+   $ sail artisan make:controller ProductsController --api
+
+4. Route List
+   $ sail artisan route:list
+
+//protected
+Route::group(['middleware' => ['auth:sanctum']], function () {
+Route::get('/products/search/{name}', [ProductsController::class, 'search']);
+});
+
+5. Create Auth Controller:
+   $ sail artisan make:controller AuthController

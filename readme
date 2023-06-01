@@ -1,4 +1,5 @@
-REST API LARAVEL
+REST API LARAVEL SAIL with 10
+
 
 1. model and migration file
    $ sail artisan make:model Products --migration
